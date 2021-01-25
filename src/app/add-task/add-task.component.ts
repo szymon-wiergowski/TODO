@@ -1,3 +1,4 @@
+import { Data } from './../models/models';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 
@@ -12,6 +13,13 @@ export class AddTaskComponent implements OnInit {
   public name: string;
   public isCompleted = false;
   public doneField = 0;
+  public newItem: Data = {
+    id: '',
+    candidate: 'szymon.wiergowski',
+    task: '',
+    is_completed: 0,
+    isDeleted: false
+  }
 
   constructor(private State: AppStateService) { }
 
@@ -28,11 +36,13 @@ export class AddTaskComponent implements OnInit {
   }
 
   addItem(): void {
-    const id = this.createId();
-    const name = this.name;
-    this.isCompleted === true ? this.doneField = 1 : this.doneField = 0;
+    const createItem: Data = {
+      id: this.createId(),
+      task: this.name,
+      is_completed: this.isCompleted === true ? this.doneField = 1 : this.doneField = 0,
+    };
     this.hide();
-    this.State.addTask(id, this.doneField, name);
+    this.State.addTask(createItem);
     this.name = '';
   }
 }

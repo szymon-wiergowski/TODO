@@ -26,15 +26,20 @@ export class AppStateService {
   deleteTask(id: string): void {
     const updateItem = this.items.find(el => el.id === id);
     updateItem.isDeleted = true;
+    console.log(this.items);
   }
 
-  addTask(idNUm: string, done: number, name: string): void {
+  addTask(newTask: Data): void {
+    const {id, task, is_completed } = newTask;
     this.items.push(
-      {id: idNUm,
-      candidate: 'szymon.wiergowski',
-      task: name,
-      is_completed: done,
-      isDeleted: false}
-      );
+      {
+        id,
+        candidate: 'szymon.wiergowski',
+        task,
+        is_completed,
+        isDeleted: false
+      }
+    );
+    console.log(this.items);
   }
 }
