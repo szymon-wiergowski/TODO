@@ -8,30 +8,33 @@ import { MockData } from './mock_data/mock-data';
   providedIn: 'root'
 })
 export class AppStateService {
-  public items: Data[] = MockData;
   constructor() { }
-  
+  public items: Data[] = MockData;
 
   getTasks(): Observable<Data[]> {
     return of(this.items);
   }
 
-  saveTask(id: string, done: number, name?: string) {
-    let updateItem = this.items.find(el => el.id === id);
-    if(name){
-      updateItem.is_completed = done;
+  saveTask(id: string, done: number, name?: string): void {
+    const updateItem = this.items.find(el => el.id === id);
+    if (name){
       updateItem.task = name;
-    }else {
-      updateItem.is_completed = done;
     }
+    updateItem.is_completed = done;
   }
 
-  deleteTask(id: string) {
-    let updateItem = this.items.find(el => el.id === id);
+  deleteTask(id: string): void {
+    const updateItem = this.items.find(el => el.id === id);
     updateItem.isDeleted = true;
   }
 
-  addTask(idNUm: string, done: number, name: string){
-    this.items.push({id: idNUm, candidate: "szymon.wiergowski", task: name, is_completed: done, isDeleted: false});
+  addTask(idNUm: string, done: number, name: string): void {
+    this.items.push(
+      {id: idNUm,
+      candidate: 'szymon.wiergowski',
+      task: name,
+      is_completed: done,
+      isDeleted: false}
+      );
   }
 }

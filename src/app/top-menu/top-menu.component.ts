@@ -10,7 +10,7 @@ export class TopMenuComponent implements OnInit {
   @Input() appTitle: string;
   @Input() isAddTask: boolean;
   @Output() newTask: EventEmitter<null> = new EventEmitter();
-  @Output() show: EventEmitter<null> = new EventEmitter();
+  @Output() showCompl: EventEmitter<null> = new EventEmitter();
   public isHide: boolean;
 
   ngOnInit(): void {
@@ -20,7 +20,7 @@ export class TopMenuComponent implements OnInit {
     this.newTask.emit(null);
   }
 
-  showCompleted(): void{
-    this.show.emit(null);
+  showCompleted(): void {
+    this.showCompl.emit(null);
   }
 }

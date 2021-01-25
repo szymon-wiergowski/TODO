@@ -8,21 +8,21 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent {
   constructor() { }
-  public title = 'To-Do List';
-  public showForm: boolean = false;
-  public showCompleted: boolean = false;
   changingValue: Subject<boolean> = new Subject<boolean>();
+  public title = 'To-Do List';
+  public showForm = false;
+  public showCompleted = false;
 
-  addNewTask(){
+  addNewTask(): void {
     this.showForm = !this.showForm;
   }
 
-  selCompleted(){
+  selCompleted(): void {
     this.showCompleted = !this.showCompleted;
     this.changingValue.next(this.showCompleted);
   }
 
-  hideForm(value){
+  hideForm(value: boolean): void {
     this.showForm = value;
   }
 }

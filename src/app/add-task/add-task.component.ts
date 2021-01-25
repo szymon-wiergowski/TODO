@@ -10,29 +10,29 @@ export class AddTaskComponent implements OnInit {
   @Input() addTask: boolean;
   @Output() hideForm: EventEmitter<boolean> = new EventEmitter();
   public name: string;
-  public isCompleted: boolean = false;
+  public isCompleted = false;
   public doneField = 0;
 
   constructor(private State: AppStateService) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
   }
 
-  hide(){
+  hide(): void {
     this.addTask = !this.addTask;
     this.hideForm.emit(this.addTask);
   }
 
-  ID() {
+  createId(): string {
     return '_' + Math.random().toString(36).substr(2, 9);
-  };
+  }
 
-  addItem(){
-    const id = this.ID();
-    const name = this.name;     
+  addItem(): void {
+    const id = this.createId();
+    const name = this.name;
     this.isCompleted === true ? this.doneField = 1 : this.doneField = 0;
     this.hide();
     this.State.addTask(id, this.doneField, name);
-    this.name = "";
+    this.name = '';
   }
 }

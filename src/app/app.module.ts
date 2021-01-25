@@ -19,7 +19,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
     AddTaskComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, 
+    BrowserModule, HttpClientModule, FormsModule,
 
   ],
   providers: [],

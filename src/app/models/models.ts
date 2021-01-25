@@ -1,18 +1,12 @@
 export interface Task {
-    status: string,
-    data: Data[],    
+    status: string;
+    data: Data[];
 }
 
 export interface Data {
-    id?: string,
-    candidate?: string,
-    task?: string,
-    is_completed?: number,
-    isDeleted?: boolean
-}
-
-export interface Error {
-    status: string,
-    message: string,
-    title: string,
+    id?: string;
+    candidate?: string;
+    task?: string;
+    is_completed?: number;
+    isDeleted?: boolean;
 }
