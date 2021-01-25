@@ -1,0 +1,8 @@
+<nav class="navbar navbar-dark bg-dark px-5 top-menu border rounded-top d-flex justify-content-between">
+    <button type="button" (click)="addTask(); isAddTask = !isAddTask" class="btn btn-sm btn-info"><i class="bi" [ngClass]="{'bi-check-square': !isAddTask, 'bi-check-square-fill': isAddTask}"></i></button>
+    <span class="navbar-text text-white font-weight-bold text-uppercase">
+        {{ appTitle }}
+    </span>  
+    <button type="button" (click)="showCompleted(); isHide = !isHide" class="btn btn-sm btn-info"><i [ngClass]="{'bi-gear': !isHide, 'bi-gear-fill': isHide}" class="bi"></i></button>
+</nav>
+

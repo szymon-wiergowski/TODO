@@ -1,0 +1,15 @@
+// import bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+$primary-color: rgb(232, 235, 222);
+
+html {
+  body {
+    background-color: $primary-color;
+  }
+}
+
+.content {
+  width: 500px;
+}

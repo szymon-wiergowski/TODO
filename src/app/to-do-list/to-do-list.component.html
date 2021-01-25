@@ -1,0 +1,7 @@
+<ul class="list-group">     
+    <div *ngFor="let item of tasks; index as i">
+        <div *ngIf="tasks">
+            <app-to-do-item [index]="i" [item]="item"></app-to-do-item>
+        </div>
+    </div>
+</ul>

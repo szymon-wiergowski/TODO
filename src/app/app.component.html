@@ -1,0 +1,5 @@
+<div class="container content px-5 py-4">
+  <app-top-menu [isAddTask]="showForm" (newTask)="addNewTask()" (show)="selCompleted()" [appTitle]="title"></app-top-menu>
+  <app-add-task [addTask]="showForm" (hideForm)="hideForm($event)"></app-add-task>
+  <app-to-do-list [displayCompleted]="changingValue"></app-to-do-list>
+</div>
