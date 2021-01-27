@@ -17,20 +17,20 @@ export class AppStateService {
 
   saveTask(id: string, done: number, name?: string): void {
     const updateItem = this.items.find(el => el.id === id);
-    if (name){
+    if (name) {
       updateItem.task = name;
     }
     updateItem.is_completed = done;
   }
 
   deleteTask(id: string): void {
-    const updateItem = this.items.find(el => el.id === id);
-    updateItem.isDeleted = true;
-    console.log(this.items);
+    const deleteItem = this.items.find(el => el.id === id);
+    deleteItem.isDeleted = true;
+    console.log(deleteItem);
   }
 
   addTask(newTask: Data): void {
-    const {id, task, is_completed } = newTask;
+    const { id, task, is_completed } = newTask;
     this.items.push(
       {
         id,

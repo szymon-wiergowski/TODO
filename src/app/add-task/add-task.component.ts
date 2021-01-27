@@ -14,12 +14,12 @@ export class AddTaskComponent implements OnInit {
   public isCompleted = false;
   public doneField = 0;
   public newItem: Data = {
-    id: '',
+    id: this.createId(),
     candidate: 'szymon.wiergowski',
     task: '',
     is_completed: 0,
     isDeleted: false
-  }
+  };
 
   constructor(private State: AppStateService) { }
 
@@ -31,18 +31,17 @@ export class AddTaskComponent implements OnInit {
     this.hideForm.emit(this.addTask);
   }
 
-  createId(): string {
-    return '_' + Math.random().toString(36).substr(2, 9);
+  createId() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxx'.replace(/[xy]/g, (c) => {
+        let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
   }
 
   addItem(): void {
-    const createItem: Data = {
-      id: this.createId(),
-      task: this.name,
-      is_completed: this.isCompleted === true ? this.doneField = 1 : this.doneField = 0,
-    };
     this.hide();
-    this.State.addTask(createItem);
-    this.name = '';
+    this.State.addTask(this.newItem);
+    this.newItem.task = '';
+    this.newItem.is_completed = 0;
   }
 }

@@ -18,7 +18,7 @@ export class TodoItemComponent implements OnInit {
   public doneField = 0;
 
   ngOnInit(): void {
-    this.item.is_completed === 0 ? this.isCompleted = false :  this.isCompleted = true;
+    this.item.is_completed === 0 ? this.isCompleted = false : this.isCompleted = true;
   }
 
   completed(id: string): void {
