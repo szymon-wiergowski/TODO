@@ -15,31 +15,24 @@ export class AppStateService {
     return of(this.items);
   }
 
-  saveTask(id: string, done: number, name?: string): void {
-    const updateItem = this.items.find(el => el.id === id);
-    if (name) {
-      updateItem.task = name;
+  saveTask(newTask: Data): void {
+    const updateItem = this.items.find(el => el.id === newTask.id);
+    if (newTask.task) {
+      updateItem.task = newTask.task;
     }
-    updateItem.is_completed = done;
+    updateItem.isCompleted = true;
   }
 
   deleteTask(id: string): void {
     const deleteItem = this.items.find(el => el.id === id);
     deleteItem.isDeleted = true;
-    console.log(deleteItem);
   }
 
   addTask(newTask: Data): void {
-    const { id, task, is_completed } = newTask;
-    this.items.push(
-      {
-        id,
-        candidate: 'szymon.wiergowski',
-        task,
-        is_completed,
-        isDeleted: false
-      }
-    );
-    console.log(this.items);
+    console.log(newTask);
+
+    this.items.push(newTask);
+    console.table(this.items);
+
   }
 }

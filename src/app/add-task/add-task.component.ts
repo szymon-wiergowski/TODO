@@ -1,4 +1,4 @@
-import { Data } from './../models/models';
+import { Item } from './../models/models';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 
@@ -10,16 +10,7 @@ import { AppStateService } from '../app-state.service';
 export class AddTaskComponent implements OnInit {
   @Input() addTask: boolean;
   @Output() hideForm: EventEmitter<boolean> = new EventEmitter();
-  public name: string;
-  public isCompleted = false;
-  public doneField = 0;
-  public newItem: Data = {
-    id: this.createId(),
-    candidate: 'szymon.wiergowski',
-    task: '',
-    is_completed: 0,
-    isDeleted: false
-  };
+  public newItem = new Item('', '', '', false, false);
 
   constructor(private State: AppStateService) { }
 
@@ -39,9 +30,9 @@ export class AddTaskComponent implements OnInit {
   }
 
   addItem(): void {
+    this.newItem = new Item(this.createId(), 'wiergowski.szymon', this.newItem.task, this.newItem.isCompleted, false);
     this.hide();
     this.State.addTask(this.newItem);
-    this.newItem.task = '';
-    this.newItem.is_completed = 0;
+    this.newItem = new Item();
   }
 }

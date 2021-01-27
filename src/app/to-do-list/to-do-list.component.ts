@@ -28,7 +28,7 @@ export class ToDoListComponent implements OnInit, OnDestroy {
 
     this.getCompletedTasks = this.displayCompleted.subscribe(res => {
       if (res === true){
-        this.tasks = this.doneTask.filter(items => items.is_completed === 1);
+        this.tasks = this.doneTask.filter(items => items.isCompleted === true);
       }else{
         this.tasks = this.allTask;
       }

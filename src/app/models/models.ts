@@ -7,6 +7,17 @@ export interface Data {
     id?: string;
     candidate?: string;
     task?: string;
-    is_completed?: number;
+    isCompleted?: boolean;
     isDeleted?: boolean;
+}
+
+export class Item {
+
+    constructor(
+      public id: string = '',
+      public candidate: string = '',
+      public task: string = '',
+      public isCompleted: boolean = false,
+      public isDeleted: boolean = false
+    ) {  }
 }
