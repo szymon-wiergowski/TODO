@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 import { Data } from './models/models';
 import { MockData } from './mock_data/mock-data';
@@ -8,19 +10,18 @@ import { MockData } from './mock_data/mock-data';
   providedIn: 'root'
 })
 export class AppStateService {
-  constructor() { }
+  private url = 'http://localhost:3000/tasks';
+
+  constructor(private http: HttpClient) { }
   public items: Data[] = MockData;
 
   getTasks(): Observable<Data[]> {
-    return of(this.items);
+    return this.http.get<Data[]>(this.url).pipe(tap(console.table));
   }
 
   saveTask(newTask: Data): void {
-    const updateItem = this.items.find(el => el.id === newTask.id);
-    if (newTask.task) {
-      updateItem.task = newTask.task;
-    }
-    updateItem.isCompleted = true;
+    let updateItem = this.items.find(el => el.id === newTask.id);
+    updateItem = newTask;
   }
 
   deleteTask(id: string): void {
@@ -29,10 +30,6 @@ export class AppStateService {
   }
 
   addTask(newTask: Data): void {
-    console.log(newTask);
-
     this.items.push(newTask);
-    console.table(this.items);
-
   }
 }

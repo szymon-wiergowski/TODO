@@ -23,15 +23,18 @@ export class AddTaskComponent implements OnInit {
   }
 
   createId() {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxx'.replace(/[xy]/g, (c) => {
-        let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxx'.replace(/[xy]/g, (c) => {
+      let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 
   addItem(): void {
     this.newItem = new Item(this.createId(), 'wiergowski.szymon', this.newItem.task, this.newItem.isCompleted, false);
     this.hide();
+    if (!this.newItem.isCompleted) {
+      this.newItem.isCompleted = false;
+    }
     this.State.addTask(this.newItem);
     this.newItem = new Item();
   }

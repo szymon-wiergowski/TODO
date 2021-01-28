@@ -14,23 +14,23 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   @Input() item: string;
   @Input() displayCompleted: Subject<boolean>;
   public tasks: Data[];
-  public doneTask: Data[];
-  public allTask: Data[];
+  public nonDeleted: Data[];
+  public onlyDoneTasks: Data[];
   private getTasksSubscription: Subscription;
   private getCompletedTasks: Subscription;
 
   ngOnInit(): void {
     this.getTasksSubscription = this.State.getTasks().subscribe(res => {
-      this.tasks = res,
-      this.doneTask = this.tasks.filter(items => items.isDeleted === false),
-      this.allTask = this.tasks;
+      this.tasks = res;
     });
 
     this.getCompletedTasks = this.displayCompleted.subscribe(res => {
       if (res === true){
-        this.tasks = this.doneTask.filter(items => items.isCompleted === true);
+        this.tasks = this.nonDeleted.filter(items => items.isCompleted === true);
+        console.table(this.tasks);
       }else{
-        this.tasks = this.allTask;
+        this.tasks = this.nonDeleted;
+        console.table(this.tasks);
       }
     });
   }

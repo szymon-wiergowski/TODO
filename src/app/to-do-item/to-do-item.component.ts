@@ -17,8 +17,8 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  completed(id: string): void {
-    this.saveItem(this.item.id);
+  completed(item: Data): void {
+    this.saveItem(item);
   }
 
   edit(): void {
