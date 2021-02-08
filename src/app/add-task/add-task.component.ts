@@ -36,6 +36,6 @@ export class AddTaskComponent implements OnInit {
       this.newItem.isCompleted = false;
     }
     this.State.addTask(this.newItem);
-    this.newItem = new Item();
+    this.newItem = new Item('', '', '', false, false);
   }
 }

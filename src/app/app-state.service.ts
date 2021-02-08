@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { Data } from './models/models';
@@ -16,20 +16,20 @@ export class AppStateService {
   public items: Data[] = MockData;
 
   getTasks(): Observable<Data[]> {
-    return this.http.get<Data[]>(this.url).pipe(tap(console.table));
+    return this.http.get<Data[]>(this.url).pipe(map((tasks: Data[]) => tasks.filter(task => task.isDeleted === false)));
   }
 
-  saveTask(newTask: Data): void {
-    let updateItem = this.items.find(el => el.id === newTask.id);
-    updateItem = newTask;
+  saveTask(newTask: Data): Observable<Data> {
+    console.log('save');
+    return this.http.put<Data>(`${this.url}/${newTask.id}`, newTask).pipe(tap(console.log));
   }
 
-  deleteTask(id: string): void {
-    const deleteItem = this.items.find(el => el.id === id);
-    deleteItem.isDeleted = true;
+  deleteTask(newTask: Data): Observable<Data> {
+    console.log('delete');
+    return this.http.put<Data>(`${this.url}/${newTask.id}`, newTask).pipe(tap(console.log));
   }
 
-  addTask(newTask: Data): void {
-    this.items.push(newTask);
+  addTask(newTask: Data): Observable<Data> {
+    return this.http.post<Data>(this.url, newTask).pipe(tap(console.log));
   }
 }

@@ -34,6 +34,13 @@
       "task": "Use the included API documentation to receive, update and remove tasks from the remote server",
       "isCompleted": false,
       "isDeleted": false
+    },
+    {
+      "id": "r57oth8k-d81s-7t8j-hjov-q1j5t1tp",
+      "candidate": "wiergowski.szymon",
+      "task": "Deleted message",
+      "isCompleted": false,
+      "isDeleted": true
     }
   ]
 }

@@ -26,11 +26,12 @@ export class TodoItemComponent implements OnInit {
     this.itemName = this.item.task;
   }
 
-  deleteItem(id: string): void {
-    this.State.deleteTask(id);
+  deleteItem(item: Data): void {
+    item.isDeleted = true;
+    this.State.deleteTask(item);
   }
 
-  saveItem(item: Data): void {
+  saveItem(item: Data): any {
     this.State.saveTask(item);
   }
 }
