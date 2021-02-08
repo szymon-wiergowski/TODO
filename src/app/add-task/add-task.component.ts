@@ -1,4 +1,4 @@
-import { Item } from './../models/models';
+import { Item } from '../models/item';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 
@@ -14,7 +14,7 @@ export class AddTaskComponent implements OnInit {
 
   constructor(private State: AppStateService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   hide(): void {

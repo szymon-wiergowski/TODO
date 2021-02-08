@@ -1,4 +1,4 @@
-import { Data } from '../models/models';
+import { Data } from '../models/data';
 
 export const MockData: Data[] = [
     {

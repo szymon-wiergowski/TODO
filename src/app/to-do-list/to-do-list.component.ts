@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
 
 import { AppStateService } from '../app-state.service';
-import { Data } from '../models/models';
+import { Data } from '../models/data';
 
 @Component({
   selector: 'app-to-do-list',

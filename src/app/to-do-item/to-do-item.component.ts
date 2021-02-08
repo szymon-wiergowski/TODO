@@ -1,4 +1,4 @@
-import { Data } from './../models/models';
+import { Data } from '../models/data';
 import { Component, OnInit, Input } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 

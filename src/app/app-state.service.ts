@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
-import { Data } from './models/models';
+import { Data } from './models/data';
 import { MockData } from './mock_data/mock-data';
 
 @Injectable({
