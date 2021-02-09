@@ -16,25 +16,29 @@ export class ToDoListComponent implements OnInit, OnDestroy {
   public tasks: Data[];
   public nonDeleted: Data[];
   public onlyDoneTasks: Data[];
-  private getTasksSubscription$: Subscription;
+  private subscription$: Subscription;
 
   ngOnInit(): void {
-    this.getTasksSubscription$ = this.State.getTasks().subscribe(res => {
+    this.subscription$ = this.State.getTasks().subscribe(res => {
       this.tasks = res;
     });
-
-    // this.getCompletedTasks = this.displayCompleted.subscribe(res => {
-    //   if (res === true){
-    //     this.tasks = this.nonDeleted.filter(items => items.isCompleted === true);
-    //     console.table(this.tasks);
-    //   }else{
-    //     this.tasks = this.nonDeleted;
-    //     console.table(this.tasks);
-    //   }
-    // });
   }
 
-  ngOnDestroy(){
-    this.getTasksSubscription$.unsubscribe();
+  saveItem(item: Data) {
+    const saveSubscription = this.State.saveTask(item).subscribe(res => {
+      this.tasks = res;
+    });
+    this.subscription$.add(saveSubscription);
+  }
+
+  deleteItem(item: Data) {
+    const delSubscription = this.State.deleteTask(item).subscribe(res => {
+      this.tasks = res;
+    });
+    this.subscription$.add(delSubscription);
+  }
+
+  ngOnDestroy() {
+    this.subscription$.unsubscribe();
   }
 }

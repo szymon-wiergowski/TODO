@@ -1,5 +1,5 @@
 import { Data } from '../models/data';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppStateService } from '../app-state.service';
 
 @Component({
@@ -11,13 +11,15 @@ export class TodoItemComponent implements OnInit {
   constructor(private State: AppStateService) { }
   @Input() item: Data;
   @Input() index: number;
+  @Output() save: EventEmitter<Data> = new EventEmitter();
+  @Output() delete: EventEmitter<Data> = new EventEmitter();
   public isEdit = false;
   public itemName: string;
 
   ngOnInit(): void {
   }
 
-  completed(item: Data): void {
+  completeTask(item: Data): void {
     this.saveItem(item);
   }
 
@@ -28,10 +30,10 @@ export class TodoItemComponent implements OnInit {
 
   deleteItem(item: Data): void {
     item.isDeleted = true;
-    this.State.deleteTask(item);
+    this.delete.emit(item);
   }
 
-  saveItem(item: Data): any {
-    this.State.saveTask(item);
+  saveItem(item: Data): void {
+    this.save.emit(item)
   }
 }

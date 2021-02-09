@@ -1,6 +1,6 @@
 <li *ngIf="!isEdit" class="list-group-item rounded d-flex justify-content-between align-items-center">
     <div class="d-flex justify-content-start align-items-center">
-        <input type="checkbox" [(ngModel)]="item.isCompleted" #isCompleted="ngModel" (change)="completed(item)" class="mr-3">
+        <input type="checkbox" [(ngModel)]="item.isCompleted" #isCompleted="ngModel" (change)="completeTask(item)" class="mr-3">
         <span>{{ index + 1 }}. {{ item.task }}</span>
     </div>
     <div class="btn-group btn-group-sm ml-3" role="group" aria-label="Basic example">
